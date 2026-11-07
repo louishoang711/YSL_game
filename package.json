@@ -1,0 +1,11 @@
+{
+  "name": "ysl-holiday-kiosk",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node tv-kiosk/serve.mjs",
+    "build": "node build.mjs",
+    "preview": "node tv-kiosk/serve.mjs dist"
+  }
+}

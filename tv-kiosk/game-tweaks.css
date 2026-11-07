@@ -1,0 +1,22 @@
+/* Chỉnh giao diện bên trong game (được trang kiosk chèn vào iframe). */
+
+/* Banner "YOU UNLOCK ..." khi nhặt quà: nhỏ hơn và kéo lên sát hàng đồng hồ để không che đường chạy */
+.gui__banner { margin-top: -1.5rem !important; max-width: 12.5rem !important; height: 2.6rem !important; }
+.gui__banner--complete { height: 4.2rem !important; }
+
+/* Hiệu ứng nhấn nút (class do press-fx.js gắn): nhấn xuống co lại + sáng viền vàng, thả ra lóe vòng sáng lan */
+.cta, .instructions__action div { transition: transform .14s cubic-bezier(.2, .8, .2, 1), filter .14s !important; -webkit-tap-highlight-color: transparent; }
+.fx-down { transform: scale(.93) !important; filter: brightness(1.18) saturate(1.1);
+  box-shadow: 0 0 0 2px rgba(251, 239, 203, .75), 0 0 .7rem .15rem rgba(230, 203, 143, .65) !important; }
+.fx-pulse { animation: fx-pulse .55s ease-out; }
+@keyframes fx-pulse { 0% { box-shadow: 0 0 0 0 rgba(251, 239, 203, .85); } 100% { box-shadow: 0 0 0 .9rem rgba(251, 239, 203, 0); } }
+@media (prefers-reduced-motion: reduce) { .fx-pulse { animation: none; } }
+
+/* Màn hướng dẫn: dời thẻ + nút "Enter the show" lên cao (nút nằm quanh giữa màn hình, vừa tầm tay người cao).
+   Chỉnh padding-top lớn hơn để thấp xuống, nhỏ hơn để cao lên. */
+.instructions { justify-content: flex-start !important; padding-top: .8rem !important; }
+
+/* Màn kết quả: thu gọn hộp điểm lại và đưa "Play again" lên quanh giữa màn hình */
+.result { justify-content: flex-start !important; }
+.result__content { flex: 0 0 auto !important; padding-bottom: 1.2rem !important; }
+.result__box { min-height: 0 !important; justify-content: flex-start !important; gap: 2rem !important; padding-top: 2.2rem !important; padding-bottom: 2rem !important; }

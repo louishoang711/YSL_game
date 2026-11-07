@@ -1,0 +1,11 @@
+# Render Blueprint: site tĩnh (không ngủ, không tốn tiền máy chủ). Build gộp tv-kiosk + game-local vào dist/.
+services:
+  - type: web
+    name: ysl-holiday-kiosk
+    runtime: static
+    buildCommand: node build.mjs
+    staticPublishPath: dist
+    headers:
+      - path: /*
+        name: X-Robots-Tag
+        value: noindex, nofollow
