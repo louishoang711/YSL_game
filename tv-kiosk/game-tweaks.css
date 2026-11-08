@@ -14,7 +14,7 @@
 
 /* Màn hướng dẫn: dời thẻ + nút "Enter the show" lên cao (nút nằm quanh giữa màn hình, vừa tầm tay người cao).
    Chỉnh padding-top lớn hơn để thấp xuống, nhỏ hơn để cao lên. */
-.instructions { justify-content: flex-start !important; padding-top: .8rem !important; }
+.instructions { justify-content: flex-start !important; padding-top: 1.6rem !important; }
 
 /* Màn kết quả: thu gọn hộp điểm lại và đưa "Play again" lên quanh giữa màn hình */
 .result { justify-content: flex-start !important; }

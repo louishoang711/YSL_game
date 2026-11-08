@@ -12,8 +12,8 @@
     --wine-950: #16020a; --wine-900: #24040c; --wine-800: #3a0711; --wine-700: #560c19; --wine-600: #741524;
     --gold-100: #fbefcb; --gold-300: #e6cb8f; --gold-500: #c9a463; --gold-700: #8f6b3a;
     --gold-line: linear-gradient(135deg, var(--gold-100), var(--gold-500) 28%, var(--gold-700) 50%, var(--gold-300) 72%, var(--gold-100));
-    /* Khung chơi: chỉnh --top để đưa game cao/thấp; luôn căn giữa ngang */
-    --top: 2.6vh; --w: 88vw; --h: 68vh;
+    /* Game tràn sát mép trái, phải và trên; chỉ chừa phần dưới cho logo. Chỉnh --h để game cao/thấp. */
+    --top: 0vh; --w: 100vw; --h: 70.6vh;
   }
   html, body { margin: 0; height: 100%; overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; }
   body {
@@ -33,15 +33,11 @@
 
   .stage { position: absolute; left: 50%; top: var(--top); width: var(--w); height: var(--h); transform: translateX(-50%); }
   .stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: var(--wine-800); }
-  /* viền vàng đôi: nét liền sát game + nét mảnh bên ngoài */
-  .stage::after { content: ""; position: absolute; inset: -4px; border: 3px solid transparent; border-image: var(--gold-line) 1; pointer-events: none; box-shadow: 0 2.5vh 7vh rgba(0, 0, 0, .6); }
-  .stage::before { content: ""; position: absolute; inset: -16px; border: 1px solid rgba(230, 203, 143, .5); pointer-events: none; }
-  .corner { position: absolute; width: 14px; height: 14px; background: var(--gold-line); transform: translate(-50%, -50%) rotate(45deg); pointer-events: none; }
-  .tl { left: -16px; top: -16px; } .tr { left: calc(100% + 16px); top: -16px; }
-  .bl { left: -16px; top: calc(100% + 16px); } .br { left: calc(100% + 16px); top: calc(100% + 16px); }
+  /* không viền hai bên và phía trên; chỉ một đường vàng mảnh ngăn game với phần logo */
+  .stage::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--gold-line); box-shadow: 0 1.5vh 4vh rgba(0, 0, 0, .55); pointer-events: none; }
 
   .brand {
-    position: absolute; left: 0; right: 0; top: calc(var(--top) + var(--h) + 16px); bottom: 0;
+    position: absolute; left: 0; right: 0; top: calc(var(--top) + var(--h)); bottom: 0;
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.2vh; pointer-events: none;
   }
   .diamond { position: relative; height: 15vh; aspect-ratio: 540 / 512; filter: drop-shadow(0 1.2vh 2.4vh rgba(0, 0, 0, .55)); }
@@ -55,14 +51,13 @@
 <body>
   <div class="stage">
     <iframe src="/game/" title="YSL Holiday Show" allow="autoplay; fullscreen"></iframe>
-    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
   </div>
   <div class="brand" aria-hidden="true">
     <div class="diamond"><img src="diamond.png" alt="" /></div>
     <div class="caption"><span><b>Holiday</b> Show</span></div>
   </div>
 <script>
-  // Chỉnh nhanh qua URL: /?top=2.6&w=88&h=68
+  // Chỉnh nhanh qua URL: /?top=0&w=100&h=70.6
   const q = new URLSearchParams(location.search);
   for (const [k, unit] of [["top", "vh"], ["w", "vw"], ["h", "vh"]])
     if (q.has(k)) document.documentElement.style.setProperty("--" + k, parseFloat(q.get(k)) + unit);
